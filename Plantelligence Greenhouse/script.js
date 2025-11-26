@@ -1,4 +1,4 @@
-// Minimal Music Login Form JavaScript
+// Minimal Login Form JavaScript
 class MinimalMusicLoginForm {
     constructor() {
         this.form = document.getElementById('loginForm');
