@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <div class="max-w-5xl mx-auto bg-white rounded-xl shadow p-6 mt-10">
+    <h2 class="text-xl font-semibold text-gray-700 mb-5">Sensor Graphs</h2>
+
+    <!-- DATE RANGE FILTER -->
+    <div class="flex gap-4 mb-5">
+        <input id="fromDate" type="date" class="p-2 border rounded">
+        <input id="toDate" type="date" class="p-2 border rounded">
+        <button id="filterBtn" class="bg-green-600 text-white px-4 py-2 rounded">Apply Filter</button>
+    </div>
+
+    <!-- GRAPHS GRID -->
+
+    <!-- TEMPERATURE GRAPH -->
+    <div class="bg-white rounded-xl shadow p-5 mb-6">
+        <h2 class="text-xl font-semibold text-gray-700 mb-3">Temperature (°C)</h2>
+        <canvas id="tempChart" height="120"></canvas>
+    </div>
+
+    <!-- HUMIDITY GRAPH -->
+    <div class="bg-white rounded-xl shadow p-5 mb-6">
+        <h2 class="text-xl font-semibold text-gray-700 mb-3">Humidity (%)</h2>
+        <canvas id="humChart" height="120"></canvas>
+    </div>
+
+    <!-- SOIL MOISTURE GRAPH -->
+    <div class="bg-white rounded-xl shadow p-5 mb-6">
+        <h2 class="text-xl font-semibold text-gray-700 mb-3">Soil Moisture (%)</h2>
+        <canvas id="soilChart" height="120"></canvas>
+    </div>
+
+    <!-- LIGHT GRAPH -->
+    <div class="bg-white rounded-xl shadow p-5 mb-6">
+        <h2 class="text-xl font-semibold text-gray-700 mb-3">Light Level</h2>
+        <canvas id="lightChart" height="120"></canvas>
+    </div>
+
+    <!-- Separated JS file -->
+    <script src="js/graphs.js"></script>
+
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Separate JS File -->
+    <script src="/Website/js/graph.js"></script>
+
+</body>
+</html>
+

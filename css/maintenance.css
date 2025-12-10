@@ -1,0 +1,98 @@
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css);
+@import url(https://fonts.googleapis.com/css?family=Lato:300);
+
+.btn {
+  width: 180px;
+  height: 50px;
+  margin: auto;
+  border-radius: 6px 22px;
+  transition: all .2s ease;
+  box-sizing: border-box;
+  text-align: center;
+  color: rgb(236, 240, 241);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 14px 0;
+  overflow: hidden;
+}
+
+.btn:hover {
+  border-radius: 22px 6px;
+  background: rgb(46, 204, 113);
+  cursor: pointer;
+}
+
+.btn--trees {
+  background: rgb(39, 174, 96);
+}
+
+.btn--trees:hover{
+  background: rgb(46, 204, 113);
+  padding: 10px;
+}
+
+.fa-tree {
+  position: relative;
+  transition: all .2s ease;
+  top: 15px;
+}
+
+.fa-tree.tree-one {
+  font-size: 14px;
+}
+
+.fa-tree.tree-two {
+  transition-delay: .07s;
+}
+
+.fa-tree.tree-three {
+  transition-delay: .14s;
+  font-size: 14px;
+}
+
+.btn:hover .fa-tree {
+  top: 3px;
+}
+
+.btn--stars {
+  background: rgb(184, 180, 81);
+}
+
+.btn--stars:hover {
+  background: rgb(209, 205, 90);
+  padding: 22px;
+}
+
+.fa-star {
+  position: relative;
+  transition: all .2s ease;
+  top: -50px;
+}
+
+.btn:hover .fa-star {
+  top: -40px;
+}
+
+.btn:hover .fa-star.star-one, .btn:hover .fa-star.star-three {
+  top: -38px;
+}
+
+.fa-star.star-three {
+  transition-delay: .14s;
+  font-size: 14px;
+}
+
+.fa-star.star-two {
+  transition-delay: .07s;
+}
+
+.fa-star.star-one {
+  font-size: 15px;
+}
+
+
+body {
+  background: rgb(236, 240, 241);
+  font-family: Lato;
+  margin: 0;
+}
