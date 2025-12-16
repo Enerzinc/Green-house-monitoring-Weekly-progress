@@ -1,0 +1,219 @@
+@import url('https://rsms.me/inter/inter-ui.css');
+
+::selection {
+  background: #2D2F36;
+}
+::-webkit-selection {
+  background: #2D2F36;
+}
+::-moz-selection {
+  background: #2D2F36;
+}
+
+body {
+  background: url("bg2.jpg") no-repeat center center fixed;
+  background-size: cover;
+  background-color: #000;
+  font-family: 'Inter UI', sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+}
+
+/* RIGHT SIDE PAGE TEXT */
+.page-right-text {
+  position: absolute;
+  top: 600px;
+  right: 90px;
+  max-width: 330px;
+  text-align: right;
+  color: #333;
+  z-index: 1;
+}
+.page-right-text h1 {
+  font-size: 48px;
+  margin: 0;
+  font-weight: 700;
+}
+.page-right-text p {
+  font-size: 18px;
+  margin-top: 10px;
+  line-height: 1.4;
+  color: #555;
+}
+
+/* MAIN FORM CONTAINER */
+.container {
+  display: flex;
+  height: 320px;
+  width: 640px;
+  margin: 340px auto 0;
+  margin-left: 6%;
+}
+
+/* MAKE RESPONSIVE — FIXED */
+@media (max-width: 900px) {
+
+  .container {
+    flex-direction: column;
+    width: 90%;
+    height: auto;
+    margin: 120px auto 0;
+    margin-left: 0;
+  }
+
+  .left, .right {
+    width: 100%;
+    height: auto;
+  }
+
+  /* Fix inputs ruining layout */
+  .form {
+    position: relative !important; /* override absolute issues */
+    margin: 40px auto !important;
+    width: 90%;
+  }
+
+  svg {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  /* center labels + inputs so they don't break */
+  label, input {
+    text-align: center;
+  }
+
+  /* Make the right box not shrink weirdly */
+  .right {
+    max-height: none;
+    padding-bottom: 40px;
+  }
+
+  /* Move right-side page text below everything instead of overlapping */
+  .page-right-text {
+    position: static;
+    text-align: center;
+    margin: 40px auto 0;
+    color: #fff;
+  }
+}
+
+/* ORIGINAL LEFT BOX */
+.left {
+  background: #E9E5D6;
+  height: calc(100% - 40px);
+  top: 20px;
+  position: relative;
+  width: 50%;
+}
+
+
+@media (max-width: 767px) {
+  .left {
+    height: 100%;
+    left: 20px;
+    width: calc(100% - 40px);
+    max-height: 270px;
+  }
+}
+.login {
+  font-size: 50px;
+  font-weight: 900;
+  margin: 50px 40px 40px;
+}
+.eula {
+  color: #999;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 40px;
+}
+
+/* ORIGINAL RIGHT BOX */
+.right {
+  background: #464E2E;
+  box-shadow: 0px 0px 40px 16px rgba(0,0,0,0.22);
+  color: #F1F1F2;
+  position: relative;
+  width: 50%;
+  padding-top: 30px;  /* keeps inputs inside predictable zone */
+  padding-bottom: 60px;
+}
+
+@media (max-width: 767px) {
+  .right {
+    flex-shrink: 0;
+    width: 100%;
+    max-height: 300px;
+    padding-top: 30px;   
+    padding-bottom: 40px;
+  }
+}
+
+svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;    /* make svg responsive */
+  height: 100%;   /* scale with the container */
+}
+
+path {
+  fill: none;
+  stroke: url(#linearGradient);
+  stroke-width: 4;
+  stroke-dasharray: 240 1386;
+}
+
+/* ORIGINAL FORM */
+.form {
+  margin: 40px;
+  position: relative; /* IMPORTANT */
+  z-index: 2; /* keep input above svg */
+}
+
+
+label {
+  color: #ffffff;
+  display: block;
+  font-size: 14px;
+  height: 16px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+input {
+  background: transparent;
+  border: 0;
+  color: #f2f2f2;
+  font-size: 20px;
+  height: 30px;
+  line-height: 30px;
+  outline: none !important;
+  width: 100%;
+}
+input::-moz-focus-inner { 
+  border: 0; 
+}
+
+#submit {
+  color: #ffffff;
+  margin-top: 40px;
+  transition: color 300ms;
+}
+#submit:focus {
+  color: #f2f2f2;
+}
+#submit:active {
+  color: #d0d0d2;
+}

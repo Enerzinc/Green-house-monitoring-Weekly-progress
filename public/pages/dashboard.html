@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Admin Dashboard | Plantelligence</title>
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <img src="../assets/images/cream-logo.png" alt="Brand Logo">
+                        </span>
+                        <span class="title-brand">Plantelligence</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="dashboard">
+                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="logs">
+                        <span class="icon"><ion-icon name="list-outline"></ion-icon></span>
+                        <span class="title">Logs</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="maintenance">
+                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+                        <span class="title">Maintenance</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="graph">
+                        <span class="icon"><ion-icon name="stats-chart-outline"></ion-icon></span>
+                        <span class="title">Graph</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id= "logoutBtn">
+                        <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+                        <span class="title">Log out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+                <div class="user">
+                    <img src="../assets/images/profile.jpg" alt="User Image">
+                </div>
+            </div>
+
+            <div class="dashboard-wrapper">
+                
+                <div class="left-column">
+                    
+                    <div class="card">
+                        <div class="gaugeContainer">
+                            <div id="knobSoil" class="knob"></div>
+                            <ion-icon name="leaf-outline" class="gaugeIcon"></ion-icon>
+                        </div>
+                        <div class="cardName">Soil Moisture
+                            <div class="percent" id="percentSoil">0%</div> 
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="gaugeContainer">
+                            <div id="knobHumidity" class="knob"></div>
+                            <ion-icon name="cloudy-outline" class="gaugeIcon"></ion-icon>
+                        </div>
+                        <div class="cardName">Humidity
+                            <div class="percent" id="percentHumidity">0%</div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="gaugeContainer">
+                            <div id="knobLight" class="knob"></div>
+                            <ion-icon name="sunny-outline" class="gaugeIcon"></ion-icon>
+                        </div>
+                        <div class="cardName">Light Level
+                            <div class="percent" id="percentLight">0</div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="gaugeContainer">
+                            <div id="knobTemp" class="knob"></div>
+                            <ion-icon name="thermometer-outline" class="gaugeIcon"></ion-icon>
+                        </div>
+                        <div class="cardName">Temperature
+                            <div class="percent" id="percentTemp">0%</div>
+                        </div>
+                    </div>
+
+                </div> <div class="right-column">
+                    
+                    <div class="feature-card" id="cardRain">
+                        <div>
+                            <div class="numbers" id="rainStatusText">No Rain</div>
+                        </div>
+                        <div class="iconBx">
+                            <ion-icon name="cloud-outline" id="rainIcon"></ion-icon>
+                        </div>
+                    </div>
+
+                    <div class="feature-card" id="cardMode">
+                        <div>
+                            <div class="numbers" id="modeText">Automatic</div>
+
+                        </div>
+                        <div class="iconBx">
+                            <ion-icon name="build-outline"></ion-icon>
+                        </div>
+                    </div>
+
+                    <div class="feature-card combined-card" id="cardRec">
+                        <div class="rec-section">
+                            <div class="icon-header">
+                                <div class="cardName">Recommendation</div>
+                                <ion-icon name="bulb-outline" class="rec-icon"></ion-icon>
+                            </div>
+                            <div class="numbers" id="recText">System OK</div>
+                        </div>
+
+                        <hr class="card-divider">
+
+                        <div class="time-section">
+                            <div class="numbers" id="clockTime">00:00:00</div>
+                            <div class="cardName" id="clockDate">...</div>
+                        </div>
+                        
+                    </div>
+
+                </div> </div> </div> </div> 
+    
+    
+                <script src="../assets/js/pureknob.js"></script> 
+    <script src="../assets/js/dashboard.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+</html>

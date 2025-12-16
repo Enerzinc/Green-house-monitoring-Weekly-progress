@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Logs | Plantelligence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/datalogs.css">
+</head>
+<body>
+    <div class="main-container">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <img src="../assets/images/cream-logo.png" alt="Brand Logo">
+                        </span>
+                        <span class="title-brand">Plantelligence</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id = "dashboard">
+                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+                <li class="hovered">
+                    <a href="#" id="logs">
+                        <span class="icon"><ion-icon name="list-outline"></ion-icon></span>
+                        <span class="title">Logs</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="maintenance">
+                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+                        <span class="title">Maintenance</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="graph">
+                        <span class="icon"><ion-icon name="stats-chart-outline"></ion-icon></span>
+                        <span class="title">Graph</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id = "logoutBtn">
+                        <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+                        <span class="title">Log out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+                <div class="user">
+                    <img src="../assets/images/profile.jpg" alt="User Image">
+                </div>
+            </div>
+
+            <div class="p-5">
+                <div class="bg-white rounded-xl shadow p-5">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-semibold text-gray-700">Recent Sensor Data</h2>
+                        
+                        <section class="section section--trees">
+                            <button class="btn btn--trees" id="downloadCsvBtn">
+                                Download CSV
+                                <div class="trees">
+                                    <i class="fa fa-tree tree-one"></i>
+                                    <i class="fa fa-tree tree-two"></i>
+                                    <i class="fa fa-tree tree-three"></i>
+                                </div>
+                            </button>
+                        </section>
+                         <button
+                            id="downloadPdfBtn"
+                            class="px-4 py-2 bg-red-600 text-white rounded-lg shadow hover:bg-red-700 transition">
+                            Download PDF
+                        </button>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="text-gray-500 text-sm border-b">
+                                    <th class="py-2 px-2">Time</th>
+                                    <th class="py-2 px-2">Temp (°C)</th>
+                                    <th class="py-2 px-2">Humidity (%)</th>
+                                    <th class="py-2 px-2">Soil (%)</th>
+                                    <th class="py-2 px-2">Soil Raw</th>
+                                    <th class="py-2 px-2">Light</th>
+                                    <th class="py-2 px-2">Rain</th>
+                                </tr>
+                            </thead>
+                            <tbody id="data-table">
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    
+    <script src="../assets/js/datalogs.js"></script>
+</body>
+</html>

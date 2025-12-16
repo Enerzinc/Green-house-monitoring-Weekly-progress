@@ -1,0 +1,640 @@
+
+
+/* =========== Google Fonts ============ */
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+
+/* =============== Globals ============== */
+* {
+  font-family: "Ubuntu", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --green: #002e16;
+  --white: #E9E5D6;
+  --gray: #f5f5f5;
+  --black1: #222;
+  --lightgreen: #ACB992;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  background: var(--white);
+  overflow: hidden; /* Lock scrollbar for perfect fit */
+}
+
+/* =============== Navigation ================ */
+.navigation {
+  position: fixed;
+  width: 300px;
+  height: 100%;
+  background: var(--green);
+  border-left: 10px solid var(--green);
+  transition: 0.5s;
+  overflow: hidden;
+  z-index: 100;
+}
+.navigation.active {
+  width: 80px;
+}
+
+.navigation ul, .navigation .icon img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.navigation ul li {
+  position: relative;
+  width: 100%;
+  list-style: none;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.navigation ul li:hover,
+.navigation ul li.hovered {
+  background-color: var(--white);
+}
+
+.navigation ul li:nth-child(1) {
+  margin-bottom: 40px;
+  pointer-events: none;
+}
+
+.navigation ul li a {
+  position: relative;
+  display: block;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  color: var(--white);
+}
+.navigation ul li:hover a,
+.navigation ul li.hovered a {
+  color: var(--green);
+}
+
+.navigation ul li a .icon {
+  position: relative;
+  display: block;
+  min-width: 60px;
+  height: 60px;
+  line-height: 75px;
+  text-align: center;
+}
+
+.navigation ul li a .icon ion-icon {
+  font-size: 1.75rem;
+}
+
+.navigation ul li a .title {
+  position: relative;
+  display: block;
+  padding: 0 10px;
+  height: 60px;
+  line-height: 60px;
+  text-align: start;
+  white-space: nowrap;
+}
+
+.title-brand{
+    position: relative;
+    display: block;
+    padding: 0 10px;
+    height: 60px;
+    line-height: 60px;
+    text-align: start;
+    white-space: nowrap;
+    font-weight: 900;
+}
+
+/* Curve outside effects */
+.navigation ul li:hover a::before,
+.navigation ul li.hovered a::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 35px 35px 0 10px var(--white);
+  pointer-events: none;
+}
+.navigation ul li:hover a::after,
+.navigation ul li.hovered a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -50px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 35px -35px 0 10px var(--white);
+  pointer-events: none;
+}
+
+/* ===================== Main Content ===================== */
+.main {
+  position: absolute;
+  width: calc(100% - 300px);
+  left: 300px;
+  height: 100vh;
+  background: var(--white);
+  transition: 0.5s;
+  display: flex;
+  flex-direction: column;
+}
+.main.active {
+  width: calc(100% - 80px);
+  left: 80px;
+}
+
+.topbar {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  flex-shrink: 0; 
+}
+
+.toggle {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+
+/* --- UPDATED USER PROFILE --- */
+.user {
+  position: relative;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 15px; 
+  padding: 0 10px;
+  text-decoration: none; 
+}
+
+.user img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: all 0.3s ease; 
+  border: 2px solid transparent; 
+}
+
+.user::before {
+    content: "4B2";
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--green);
+    transition: all 0.3s ease;
+    text-decoration: none; 
+}
+
+/* --- HOVER ANIMATIONS --- */
+.user:hover img {
+    transform: scale(1.1);
+    border-color: var(--green);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.user:hover::before {
+    color: var(--lightgreen);
+    transform: translateX(-3px); 
+}
+
+/* --- HOVER ANIMATIONS --- */
+.user:hover img {
+    transform: scale(1.1);
+    border-color: var(--green);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.user:hover::before {
+    color: var(--lightgreen);
+    transform: translateX(-3px);
+}
+
+/* ======================= Dashboard Layout ====================== */
+.dashboard-wrapper {
+    width: 100%;
+    /* Fill remaining height */
+    height: calc(100vh - 60px); 
+    padding: 20px;
+    display: grid;
+    /* 2fr for Gauges, 1fr for Status */
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 20px;
+}
+
+/* --- Left Column (Gauges) --- */
+.left-column {
+    display: grid;
+    /* 2 cols, 2 rows */
+    grid-template-columns: repeat(2, 1fr); 
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 20px;
+    height: 100%;
+}
+
+/* --- Right Column (Status) --- */
+.right-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+    height: 100%;
+}
+
+/* ======================= CARD STYLING ====================== */
+.card {
+  position: relative;
+  background: var(--white);
+  border-radius: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  
+  /* FORCE GRID LAYOUT INSIDE CARD: 50% Knob | 50% Text */
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  align-items: center;
+  padding: 10px;
+  
+  /* IMPORTANT: Allow glow to show */
+  overflow: visible; 
+}
+
+/* Feature cards (Right column) use flex */
+.feature-card {
+  position: relative;
+  background: var(--white);
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* --- TEXT SCALING --- */
+
+/* 1. GAUGE CARDS (Align Right) */
+.card .cardName {
+  color: var(--lightgreen);
+  /* Make text fill the space */
+  font-size: clamp(1.4rem, 2vw, 2.2rem); 
+  font-weight: 600;
+  text-align: right;
+  line-height: 1.1;
+  justify-self: end;
+  padding-right: 15px;
+}
+
+/* 2. FEATURE CARDS (Rain, Mode) -> Align Left */
+.feature-card .cardName {
+    color: var(--lightgreen);
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: left; /* Sticky Left */
+    margin-left: 0;
+}
+
+.feature-card .numbers {
+    position: relative;
+    font-weight: 500;
+    /* Bigger Font for Status */
+    font-size: clamp(2.5rem, 3.5vw, 3.5rem); 
+    color: var(--green);
+    text-align: left; /* Sticky Left */
+    width: 100%;
+}
+
+.feature-card .iconBx {
+    font-size: clamp(3rem, 4vw, 4.5rem);
+    color: var(--lightgreen);
+}
+
+/* Hover Effects */
+.card:hover, .feature-card:hover {
+  background: var(--green);
+}
+.card:hover .cardName, .card:hover .gaugeIcon, 
+.feature-card:hover .cardName, .feature-card:hover .iconBx, 
+.feature-card:hover .numbers {
+  color: var(--white);
+}
+
+/* ========= FLUID GAUGE STYLES ========= */
+
+/* The Container takes up the left grid cell */
+.gaugeContainer {
+    position: relative;
+    width: 100%; 
+    height: 100%;
+    display: flex;
+    justify-content: center; /* Center knob in its cell */
+    align-items: center;
+}
+
+.knob {
+    /* Allow knob to grow to fill container */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* FORCE CANVAS TO FIT */
+.knob canvas {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain;
+}
+
+.gaugeIcon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: clamp(1.3rem, 4vw, 4rem); /* Responsive Icon */
+    pointer-events: none;
+    z-index: 10;
+    color: var(--lightgreen);
+    width: 20%;
+    height: 20%;
+}
+
+/* Hover Glow */
+.card:hover .gaugeContainer {
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8));
+    transition: 0.3s ease;
+}
+
+.percent {
+    /* Huge Numbers */
+    font-size: clamp(3rem, 5vw, 5.5rem); 
+    font-weight: 800;
+    margin-top: 5px;
+    line-height: 1;
+    color: var(--green);
+    text-align: right;
+    width: 100%;
+}
+.card:hover .percent {
+    color: var(--white);
+}
+
+/* Wrapper for Text info (Right side of gauge card) */
+.card > div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end; /* Align text to right */
+    width: 100%;
+}
+
+/* ============ Combined Card (Rec + Time) ============ */
+.combined-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center !important; /* Force Center */
+    flex-grow: 1; 
+    gap: 0;
+}
+
+/* Force Center Override for Combined Card elements */
+.combined-card .numbers, 
+.combined-card .cardName,
+.combined-card #recText {
+    text-align: center !important;
+    justify-content: center;
+}
+
+.rec-section {
+    width: 100%;
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.icon-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+.rec-icon {
+    font-size: 2rem;
+    color: var(--lightgreen);
+}
+
+.combined-card #recText {
+    font-size: clamp(1.8rem, 2.5vw, 3rem);
+    line-height: 1.1;
+}
+
+.card-divider {
+    width: 80%;
+    height: 2px;
+    background: var(--lightgreen);
+    opacity: 0.3;
+    border: none;
+    margin: 10px 0;
+}
+
+.time-section {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.combined-card #clockTime {
+    font-size: clamp(2.5rem, 3.5vw, 4.5rem); 
+    color: var(--green);
+    font-weight: 700;
+}
+
+.combined-card #clockDate {
+    font-size: clamp(1.2rem, 1.5vw, 1.8rem);
+    text-align: center !important;
+    margin-top: 5px;
+}
+
+/* Hover Text Colors */
+.combined-card:hover .rec-icon,
+.combined-card:hover #recText,
+.combined-card:hover #clockTime,
+.combined-card:hover #clockDate {
+    color: var(--white);
+}
+.combined-card:hover .card-divider {
+    background: var(--white);
+    opacity: 0.5;
+}
+
+/* ============ Dropdown Styling ============ */
+.mode-dropdown {
+    margin-top: 5px;
+    padding: 8px 15px; 
+    font-size: 1.1rem; 
+    border-radius: 10px; 
+    border: 2px solid var(--green);
+    background: transparent;
+    color: var(--green);
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+    
+    /* Stick Left */
+    display: inline-block;
+    text-align: left;
+    margin-left: 0;
+}
+
+.mode-dropdown:hover {
+    background-color: var(--green);
+    color: var(--white);
+}
+.feature-card:hover .mode-dropdown {
+    border-color: var(--white);
+    color: var(--white);
+}
+.feature-card:hover .mode-dropdown option {
+    background-color: #fff;
+    color: #222;
+}
+
+/* ============ Colors (Rain/No Rain) ============ */
+
+/* --- Not Raining State (Light Green) --- */
+.feature-card.not-raining { background: #A7E399; }
+
+/* Default Text Colors (Dark Green) */
+.feature-card.not-raining .numbers,
+.feature-card.not-raining .cardName,
+.feature-card.not-raining .iconBx,
+.feature-card.not-raining .rec-icon,
+.feature-card.not-raining #recText { 
+    color: var(--green); 
+}
+
+/* Default Dropdown Colors (Dark Green) */
+.feature-card.not-raining .mode-dropdown { 
+    border-color: var(--green); 
+    color: var(--green); 
+}
+
+/* --- Hover State (Turns Dark Green) --- */
+.feature-card.not-raining:hover { 
+    background: var(--green); 
+}
+
+/* Fix: Turn Text White on Hover */
+.feature-card.not-raining:hover .numbers,
+.feature-card.not-raining:hover .cardName,
+.feature-card.not-raining:hover .iconBx,
+.feature-card.not-raining:hover #recText { 
+    color: var(--white); 
+}
+
+/* Fix: Turn Dropdown White on Hover */
+.feature-card.not-raining:hover .mode-dropdown { 
+    border-color: var(--white); 
+    color: var(--white); 
+}
+.feature-card.not-raining:hover .mode-dropdown option {
+    background-color: #fff;
+    color: #222;
+}
+
+/* --- Raining State (Blue) --- */
+.feature-card.raining { background: #67B2D8; }
+
+.feature-card.raining .numbers,
+.feature-card.raining .cardName,
+.feature-card.raining .iconBx,
+.feature-card.raining .rec-icon,
+.feature-card.raining #clockTime,
+.feature-card.raining #recText,
+.feature-card.raining #clockDate { 
+    color: var(--white); 
+}
+
+.feature-card.raining .card-divider { 
+    background: var(--white); 
+    opacity: 0.5; 
+}
+
+.feature-card.raining .mode-dropdown { 
+    background-color: var(--white); 
+    color: #67B2D8; 
+    border: 2px solid var(--white); 
+}
+
+.feature-card.raining .mode-dropdown option { 
+    background-color: var(--white); 
+    color: var(--black1); 
+}
+
+/* ============ Mobile Support ============ */
+@media (max-width: 991px) {
+    body { overflow-y: auto; }
+    .navigation { left: -300px; }
+    .navigation.active { width: 300px; left: 0; }
+    .main { width: 100%; left: 0; height: auto; }
+    .main.active { left: 300px; }
+    
+    .dashboard-wrapper {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+    .left-column, .right-column {
+        display: flex;
+        flex-direction: column;
+    }
+    .card, .feature-card {
+        min-height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navigation { width: 100%; left: -100%; }
+    .navigation.active { width: 100%; left: 0; }
+    .main.active .toggle { color: #fff; position: fixed; right: 0; }
+}

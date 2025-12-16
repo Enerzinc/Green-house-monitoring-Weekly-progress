@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance</title>
+    <link rel="stylesheet" href="../assets/css/maintenance.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="main-container">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <img src="../assets/images/cream-logo.png" alt="Brand Logo">
+                        </span>
+                        <span class="title-brand">Plantelligence</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id = "dashboard">
+                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="logs">
+                        <span class="icon"><ion-icon name="list-outline"></ion-icon></span>
+                        <span class="title">Logs</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="maintenance">
+                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+                        <span class="title">Maintenance</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="graph">
+                        <span class="icon"><ion-icon name="stats-chart-outline"></ion-icon></span>
+                        <span class="title">Graph</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id = "logoutBtn">
+                        <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+                        <span class="title">Log out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+                <div class="user">
+                    <img src="../assets/images/profile.jpg" alt="User Image">
+                </div>
+            </div>
+
+            <div class="dashboard-wrapper"></div>
+            <div class="mx-10 my-10">
+
+            <div class="bg-white rounded-xl shadow p-5 mb-10">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-semibold text-gray-700">Maintenance Logs</h3>
+
+                    <section class="section section--trees mb-4">
+                    <button class="btn btn--trees" id="addLogBtn">
+                        + Logs
+                        <div class="trees">
+                            <i class="fa fa-tree tree-one"></i>
+                            <i class="fa fa-tree tree-two"></i>
+                            <i class="fa fa-tree tree-three"></i>
+                        </div>
+                        </button>
+                    </section>
+                </div>
+
+                <table class="w-full text-left">
+                    <thead>
+                    <tr class="text-gray-500 text-sm border-b">
+                        <th class="py-2">Date</th>
+                        <th class="py-2">Task</th>
+                        <th class="py-2">Performed By</th>
+                        <th class="py-2">Notes</th>
+                    </tr>
+                    </thead>
+                    <tbody id="maintenance-table"></tbody>
+                </table>
+            </div>
+
+        <div class="bg-white rounded-xl shadow p-5 mb-10">
+                <h3 class="text-xl font-semibold text-gray-700 mb-4">System mode-controls</h3>
+
+                <!-- BUTTONS -->
+                <div class="space-y-4">
+
+                <!-- AUTO -->
+                <button
+                    onclick="setMode('AUTO')"
+                    class="w-full py-3 rounded-xl bg-green-600 text-white font-semibold
+                        hover:bg-green-700 active:scale-95 transition">
+                    🌱 Automatic Mode
+                </button>
+
+                <!-- MAINT -->
+                <button
+                    onclick="setMode('MAINT')"
+                    class="w-full py-3 rounded-xl bg-yellow-500 text-white font-semibold
+                        hover:bg-yellow-600 active:scale-95 transition">
+                    🛠 Maintenance Mode
+                </button>
+
+                <!-- SLEEP -->
+                <button
+                    onclick="confirmSleep()"
+                    class="w-full py-3 rounded-xl bg-red-600 text-white font-semibold
+                        hover:bg-red-700 active:scale-95 transition">
+                    💤 Sleep Mode
+                </button>
+                    <!-- FEEDBACK -->
+                    <p id="feedback"
+                    class="mt-6 text-center text-sm text-gray-500">
+                    </p>
+                </div>
+            </div>
+
+        <div class="bg-white rounded-xl shadow p-5 mb-10">
+                <h3 class="text-xl font-semibold text-gray-700 mb-4">System Configuration</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="font-semibold">Max Temperature (°C)</label>
+                        <input id="tempThreshold" type="number"
+                            class="mt-1 w-full p-2 border rounded-lg" placeholder="e.g. 35">
+                    </div>
+                    <div>
+                        <label class="font-semibold">Auto-Water Soil %</label>
+                        <input id="soilThreshold" type="number"
+                            class="mt-1 w-full p-2 border rounded-lg" placeholder="e.g. 30">
+                    </div>
+                    <div>
+                        <label class="font-semibold">Graph Range</label>
+                        <select id="graphRange"
+                            class="mt-1 w-full p-2 border rounded-lg">
+                            <option value="mins">10 mins</option>
+                            <option value="hour">an hour</option>
+                            <option value="day">a day</option>
+                        </select>
+                    </div>
+                </div>
+                <button id="saveConfigBtn"
+                    class="mt-5 py-2 px-4 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
+                    Save Settings
+                </button>
+                </div>
+
+                <div class="bg-white rounded-xl shadow p-5 mb-10">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4">Manual Controls</h3>
+                    <button id="pumpBtn" class="py-3 px-4 bg-green-500 text-white rounded-lg shadow hover:bg-green-600 transition ">Water Pump</button>
+                    <button id="ventBtn" class="py-3 px-4 bg-purple-500 text-white rounded-lg shadow hover:bg-purple-600 transition">Open / Close Vent</button>
+                </div>
+            </div>
+
+            <div  iv id="logModal" class="fixed inset-0 bg-black bg-opacity-40 hidden flex items-center justify-center">
+            <div class="bg-white p-6 rounded-xl shadow-lg w-96">
+                <h3 class="text-lg font-bold mb-4">Add Maintenance Log</h3>
+
+                <label class="font-semibold">Task</label>
+                <input id="logTask" type="text" class="w-full p-2 border rounded mb-3" placeholder="e.g., Replaced water pump">
+
+                <label class="font-semibold">Performed By</label>
+                <input id="logPerson" type="text" class="w-full p-2 border rounded mb-3" placeholder="Your name">
+
+                <label class="font-semibold">Notes</label>
+                <textarea id="logNotes" class="w-full p-2 border rounded mb-3" placeholder="Optional notes"></textarea>
+
+                <div class="flex justify-end gap-2">
+                    <button id="cancelLog" class="py-2 px-4 bg-gray-300 rounded-lg hover:bg-gray-400">Cancel</button>
+                    <button id="saveLog" class="py-2 px-4 bg-green-600 text-white rounded-lg hover:bg-green-700">Save</button>
+                </div>
+            </div>
+        </div>
+
+
+        </div>
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+
+
+<script src="../assets/js/maintenance.js"></script>
+</body>
+</html>
