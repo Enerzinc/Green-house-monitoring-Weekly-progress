@@ -1,8 +1,6 @@
 // ==================== 1. CONFIGURATION ====================
 const SERVER_URL = "http://192.168.125.41:3000";
-// const response = await fetch(`${SERVER_URL}/api/sensors/latest`);
 
-// GLOBAL VARIABLES
 let knobSoil = null;
 let knobHumidity = null;
 let knobLight = null;
@@ -16,7 +14,6 @@ const MODE_MAP = {
   SLEEP: "Sleep"
 };
 
-// ==================== 2. KNOB SETUP ====================
 function createKnob(id, color, min, max) {
     const element = document.getElementById(id);
     if (!element || typeof pureknob === "undefined") return null;
@@ -194,7 +191,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     fetchLatestData();
     setInterval(fetchLatestData, 2000);
-    
+
     fetchCurrentMode();                 // ⭐ ADD
     setInterval(fetchCurrentMode, 1000); // ⭐ ADD
 

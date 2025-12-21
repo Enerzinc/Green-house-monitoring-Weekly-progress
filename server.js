@@ -8,7 +8,7 @@ let currentMode = "UNKNOWN";
 const app = express();
 const PORT = 3000;
 
-mongoose.connect('mongodb://127.0.0.1:27017/greenhouse')
+mongoose.connect('mongodb://127.0.0.1:27017/greenhouse_v2')
 .then(() => console.log('✅ MongoDB Connected'))
 .catch(err => console.error('❌ MongoDB Error:', err));
 
