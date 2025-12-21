@@ -1,5 +1,5 @@
 #include "Sensors.h"
-#define SOIL_DRY_MAX  900 
+#define SOIL_DRY_MAX  1023 
 #define SOIL_WET_MIN  300 
 
 SensorSystem::SensorSystem(int dhtPin, int dhtType, int lightPin, int soilPin, int rainPin)

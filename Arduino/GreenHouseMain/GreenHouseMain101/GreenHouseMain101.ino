@@ -5,6 +5,10 @@
 #include "ESPWiFi.h"
 #include "SensorS.h"
 
+#include <avr/power.h>
+#include <avr/sleep.h>
+#include <avr/wdt.h>
+
 // ==================================================
 //                     MODES
 // ==================================================
@@ -13,6 +17,7 @@ enum Mode {
   MODE_SLEEP = 1,
   MODE_AUTO  = 2
 };
+
 
 volatile Mode currentMode = MODE_MAINT;
 Mode lastMode = MODE_MAINT;
@@ -49,6 +54,8 @@ const char* SERVER_HOST = "192.168.125.41";
 const uint16_t SERVER_PORT = 3000;
 const char* SERVER_PATH = "/api/sensors";
 
+
+
 // ==================================================
 //                  TIMING
 // ==================================================
@@ -56,8 +63,8 @@ const unsigned long MAINT_INTERVAL = 5000;
 const unsigned long AUTO_INTERVAL  = 600000;
 unsigned long lastSendTime = 0;
 
-// Button debounce
-volatile unsigned long lastButtonISR = 0;
+unsigned long lastButtonTime = 0;   
+
 
 // ==================================================
 //                 OBJECTS
@@ -92,15 +99,14 @@ void goToSleep() {
 
   digitalWrite(LED_PIN, LOW);
 
-  detachInterrupt(digitalPinToInterrupt(BUTTON_PIN));
-  attachInterrupt(digitalPinToInterrupt(BUTTON_PIN), wakeUpISR, FALLING);
+  pinMode(BUTTON_PIN, INPUT_PULLUP);
+  attachInterrupt(digitalPinToInterrupt(BUTTON_PIN), buttonISR, FALLING);
 
   set_sleep_mode(SLEEP_MODE_PWR_DOWN);
   sleep_enable();
   sei();
   sleep_cpu();
 
-  // ---- WAKE ----
   sleep_disable();
   detachInterrupt(digitalPinToInterrupt(BUTTON_PIN));
   attachInterrupt(digitalPinToInterrupt(BUTTON_PIN), buttonISR, FALLING);
@@ -194,6 +200,9 @@ void handleCurrentMode() {
 //                    SETUP
 // ==================================================
 void setup() {
+  power_spi_disable();
+  power_twi_disable();
+
   Serial.begin(9600);
   espSerial.begin(9600);
 
@@ -229,6 +238,9 @@ void loop() {
   // -------- BUTTON HANDLING --------
   if (buttonEvent) {
   buttonEvent = false;
+   unsigned long now = millis();
+  if (now - lastButtonTime < 300) return; // debounce
+  lastButtonTime = now;
   lastMode = currentMode;
   justWokeUp = false;
 
@@ -245,7 +257,6 @@ void loop() {
   Serial.print(" → ");
   Serial.println(modeToString(currentMode));
 
-  // 🔴 LED blink = mode feedback
   switch (currentMode) {
     case MODE_MAINT:
       blinkLED(1, 200);
@@ -292,9 +303,7 @@ void loop() {
 //                  INTERRUPT
 // ==================================================
 void buttonISR() {
-  unsigned long now = millis();
-  if (now - lastButtonISR > 300) {
+
     buttonEvent = true;
-    lastButtonISR = now;
-  }
+
 }
